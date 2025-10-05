@@ -23,8 +23,7 @@ export function LoginPage() {
           <div>
             <label className="block text-md text-zinc-300 mb-2">Email</label>
             <input
-              type="email"
-              value={email}
+              
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="example@email.com"
@@ -35,8 +34,7 @@ export function LoginPage() {
           <div>
             <label className="block text-sm text-zinc-300 mb-2">Password</label>
             <input
-              type="password"
-              value={password}
+              
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
