@@ -1,15 +1,22 @@
-// src/pages/loginPage.jsx
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login:", { email, password });
-  };
+  function login(){
+    axios.post("http://localhost:5000/api/users/login",{
+      email:email,
+      password:password
+    }).then(response=>{
+      console.log(response.data);
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
 
   return (
     <div className="h-screen w-screen bg-[url(./loginpageBG.png)] flex bg-cover bg-center items-center justify-center p-4  ">
@@ -19,7 +26,7 @@ export function LoginPage() {
           <p className="text-white text-sm">Welcome back to the store</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-5">
           <div>
             <label className="block text-md text-zinc-300 mb-2">Email</label>
             <input
@@ -43,12 +50,12 @@ export function LoginPage() {
           </div>
 
           <button
-            type="submit"
+             onClick={login}
             className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition"
           >
             Sign In
           </button>
-        </form>
+        </div>
 
         <p className="text-center text-sm text-white mt-6">
           Don't have an account? <Link className="text-red-500 cursor-pointer" to="/registerPage">Sign up</Link>
