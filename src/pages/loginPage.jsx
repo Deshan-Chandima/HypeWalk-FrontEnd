@@ -1,19 +1,32 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const  navigate = useNavigate();
 
   function login(){
-    axios.post("http://localhost:5000/api/users/login",{
+    axios.post(import.meta.env.VITE_BACKEND_URL +"/api/users/login",{
       email:email,
       password:password
     }).then(response=>{
+      toast.success("Login successful");
+      localStorage.setItem("token",response.data.token);
       console.log(response.data);
+      if(response.data.role==="admin"){
+        navigate("/admin");
+
+      }else{
+        navigate("/");
+
+      }
+
     }).catch(error=>{
+      toast.error("Login failed");
       console.log(error);
     })
   }
