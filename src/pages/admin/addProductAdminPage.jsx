@@ -24,10 +24,10 @@ export default function AddProductsAdminPage() {
   async function handleSubmit() {
     setLoading(true);
 
-    const altNameArray = altName.split(",").map(item => item.trim());
-    const sizeArray = size.split(",").map(item => item.trim());
-    const colorArray = color.split(",").map(item => item.trim());
-    const imagesArray = images.split(",").map(item => item.trim());
+    const altNameArray = altName.split(",")
+    const sizeArray = size.split(",")
+    const colorArray = color.split(",")
+    const imagesArray = images.split(",")
 
     const productData = {
       productId: productId,
@@ -68,9 +68,7 @@ export default function AddProductsAdminPage() {
     }).catch((error) => {
       console.error("Error Adding Product:", error);
       toast.error("Failed to Add Product");
-    }).finally(() => {
-      setLoading(false);
-    });
+    })
   }
 
   return (
