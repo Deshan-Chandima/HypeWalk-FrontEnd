@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import mediaUpload from "../../utils/mediaUpload";
 
 export default function AddProductsAdminPage() {
   const [productId, setProductId] = useState("");
@@ -12,7 +13,7 @@ export default function AddProductsAdminPage() {
   const [color, setColor] = useState("");
   const [labelledPrice, setLabelledPrice] = useState("");
   const [price, setPrice] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState("");
   const [isAvailable, setIsAvailable] = useState(true);
@@ -22,12 +23,24 @@ export default function AddProductsAdminPage() {
   const navigate = useNavigate();
 
   async function handleSubmit() {
+    
     setLoading(true);
+    const promisesArray = []
+
+    for(let i=0; i<images.length; i++){
+      const promise = mediaUpload(images[i])
+      promisesArray[i] = promise
+    }
+
+    const responses = await Promise.all(promisesArray)
+    console.log(responses);
+    
+    
 
     const altNameArray = altName.split(",")
     const sizeArray = size.split(",")
     const colorArray = color.split(",")
-    const imagesArray = images.split(",")
+    
 
     const productData = {
       productId: productId,
@@ -38,7 +51,7 @@ export default function AddProductsAdminPage() {
       color: colorArray,
       labelledPrice: Number(labelledPrice),
       price: Number(price),
-      images: imagesArray,
+      images: responses,
       description: description,
       stock: Number(stock),
       isAvailable: isAvailable,
@@ -194,15 +207,14 @@ export default function AddProductsAdminPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-[#2D3436]">Image URLs (comma-separated)</label>
-          <input 
-            type="text" 
-            value={images} 
-            onChange={(e) => setImages(e.target.value)} 
-            className="w-full bg-[#FAFAFA] border border-[#DFE6E9] h-[45px] rounded-xl px-4 text-[#2D3436] placeholder-[#B2BEC3] focus:border-[#00B894] focus:ring-2 focus:ring-[#00B894]/20 focus:outline-none transition"
-            placeholder="/products/shoe1.jpg, /products/shoe2.jpg"
-          />
+        <div className="flex flex-col gap-1">
+          <label className="text-sm font-semibold">Images</label>
+          <input multiple type="file"  
+            onChange={(e)=>{
+            const files = Array.from(e.target.files);
+            setImages((prevImages) => [...prevImages, ...files])
+
+          }} className="w-full border-[2px] h-[40px] rounded-md px-2"/>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -246,9 +258,9 @@ export default function AddProductsAdminPage() {
           <button 
             onClick={handleSubmit} 
             disabled={loading}
-            className="cursor-pointer w-[200px] h-[50px] rounded-xl flex justify-center items-center bg-[#00B894] text-white hover:bg-[#00A383] transition font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="cursor-pointer w-[200px] h-[50px] border-2 border-black rounded-md flex justify-center items-center bg-black text-white hover:bg-gray-800 transition"
           >
-            {loading ? "Adding..." : "Add Product"}
+            Add product
           </button>
           <Link 
             to="/admin/products" 
