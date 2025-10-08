@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Filter, ChevronDown } from "lucide-react";
+import Footer from "../components/Footer";
+import Navbar from "../components/navbar";
 
 export default function MenPage() {
   const [filterOpen, setFilterOpen] = useState(false);
@@ -63,6 +65,8 @@ export default function MenPage() {
   ];
 
   return (
+    <>
+    <Navbar />
     <div className="w-full bg-[#ECE9E2]">
       {/* Smaller Hero Section */}
       <div className="relative w-full h-[300px] bg-gradient-to-r from-[#D4C5B9] to-[#C9B8A8] overflow-hidden">
@@ -233,5 +237,7 @@ export default function MenPage() {
         </div>
       </div>
     </div>
+    <Footer />
+    </> 
   );
 }
