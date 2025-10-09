@@ -254,33 +254,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Features Section */}
-        
 
-        
-
-        {/* Newsletter Section - NEW! */}
-        <div className="w-full bg-[#ECE9E2] py-16 px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-[#2D3436] mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-[#636E72] text-lg mb-8">
-              Subscribe to get special offers and exclusive updates
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-6 py-4 rounded-full border-2 border-[#DFE6E9] text-[#2D3436] focus:border-[#00B894] focus:outline-none transition"
-              />
-              <button className="bg-[#00B894] hover:bg-[#00A383] text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
       <Footer />
     </>

@@ -32,7 +32,6 @@ export default function ProductAdminPage() {
 
   useEffect(() => {
     fetchAll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function fetchAll() {
@@ -119,6 +118,7 @@ export default function ProductAdminPage() {
             {/* Table Head */}
             <thead>
               <tr className="bg-[#2D3436] text-white text-sm uppercase">
+                <th className="p-4 font-semibold">Image</th>
                 <th className="p-4 font-semibold">Product ID</th>
                 <th className="p-4 font-semibold">Product Name</th>
                 <th className="p-4 font-semibold">Label Price</th>
@@ -126,6 +126,7 @@ export default function ProductAdminPage() {
                 <th className="p-4 font-semibold">Stock</th>
                 <th className="p-4 font-semibold">Availability</th>
                 <th className="p-4 font-semibold">Category</th>
+                <th className="p-4 font-semibold">Gender</th>
                 <th className="p-4 text-center font-semibold">Actions</th>
               </tr>
             </thead>
@@ -141,6 +142,24 @@ export default function ProductAdminPage() {
                     key={product.productId || product._id || index}
                     className="border-b border-[#DFE6E9] hover:bg-[#FAFAFA] transition-colors"
                   >
+                    {/* Product Image */}
+                    <td className="p-4">
+                      <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                        {product.images && product.images[0] ? (
+                          <img
+                            src={product.images[0]}
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.src = "https://via.placeholder.com/100?text=No+Image";
+                            }}
+                          />
+                        ) : (
+                          <span className="text-xs text-gray-400">No Image</span>
+                        )}
+                      </div>
+                    </td>
+
                     {/* Product ID */}
                     <td className="p-4 text-[#636E72] font-medium">
                       {product.productId}
@@ -194,6 +213,22 @@ export default function ProductAdminPage() {
 
                     {/* Category */}
                     <td className="p-4 text-[#636E72]">{product.category}</td>
+
+                    {/* Gender Column */}
+                    <td className="p-4">
+                      <span
+                        className={classNames(
+                          "px-3 py-1.5 rounded-full text-xs font-semibold",
+                          product.gender === "Men"
+                            ? "bg-blue-100 text-blue-700"
+                            : product.gender === "Women"
+                            ? "bg-pink-100 text-pink-700"
+                            : "bg-purple-100 text-purple-700"
+                        )}
+                      >
+                        {product.gender || "Unisex"}
+                      </span>
+                    </td>
 
                     {/* Actions */}
                     <td className="p-4">
@@ -260,7 +295,7 @@ export default function ProductAdminPage() {
               {shown.length === 0 && (
                 <tr>
                   <td
-                    colSpan={8}
+                    colSpan={10}
                     className="p-12 text-center text-[#B2BEC3] text-base"
                   >
                     No products to show.

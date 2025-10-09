@@ -19,6 +19,7 @@ export default function UpdateProductPage() {
   const [stock, setStock] = useState(location.state.stock);
   const [isAvailable, setIsAvailable] = useState(location.state.isAvailable);
   const [category, setCategory] = useState(location.state.category);
+  const [gender, setGender] = useState(location.state.gender || "Unisex"); // ✅ NEW STATE
   
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -58,7 +59,8 @@ export default function UpdateProductPage() {
         description: description,
         stock: Number(stock),
         isAvailable: isAvailable,
-        category: category
+        category: category,
+        gender: gender, // ✅ INCLUDE GENDER
       };
 
       const token = localStorage.getItem("token");
@@ -150,15 +152,32 @@ export default function UpdateProductPage() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-semibold text-[#2D3436]">Alternative Names (comma-separated)</label>
-          <input 
-            type="text" 
-            value={altName} 
-            onChange={(e) => setAlternativeName(e.target.value)} 
-            className="w-full bg-[#FAFAFA] border border-[#DFE6E9] h-[45px] rounded-xl px-4 text-[#2D3436] placeholder-[#B2BEC3] focus:border-[#00B894] focus:ring-2 focus:ring-[#00B894]/20 focus:outline-none transition"
-            placeholder="Air Max 90, AM90"
-          />
+        {/* ✅ NEW GENDER FIELD */}
+        <div className="flex flex-wrap gap-4">
+          <div className="flex-1 min-w-[250px] flex flex-col gap-2">
+            <label className="text-sm font-semibold text-[#2D3436]">Gender *</label>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="w-full bg-[#FAFAFA] border border-[#DFE6E9] h-[45px] rounded-xl px-4 text-[#2D3436] focus:border-[#00B894] focus:ring-2 focus:ring-[#00B894]/20 focus:outline-none transition"
+              required
+            >
+              <option value="Men">Men</option>
+              <option value="Women">Women</option>
+              <option value="Unisex">Unisex</option>
+            </select>
+          </div>
+
+          <div className="flex-1 min-w-[250px] flex flex-col gap-2">
+            <label className="text-sm font-semibold text-[#2D3436]">Alternative Names (comma-separated)</label>
+            <input 
+              type="text" 
+              value={altName} 
+              onChange={(e) => setAlternativeName(e.target.value)} 
+              className="w-full bg-[#FAFAFA] border border-[#DFE6E9] h-[45px] rounded-xl px-4 text-[#2D3436] placeholder-[#B2BEC3] focus:border-[#00B894] focus:ring-2 focus:ring-[#00B894]/20 focus:outline-none transition"
+              placeholder="Air Max 90, AM90"
+            />
+          </div>
         </div>
 
         <div className="flex flex-wrap gap-4">

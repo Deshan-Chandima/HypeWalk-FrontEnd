@@ -12,7 +12,7 @@ export default function App() {
     <BrowserRouter>
     <Toaster position="top-right"/>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/*" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path="/men" element={<MenPage />} />
