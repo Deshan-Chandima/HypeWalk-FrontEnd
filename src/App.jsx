@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path="/men" element={<MenPage />} />
         <Route path="/women" element={<WomenPage />} />
-        <Route path="/Overview" element={<ProductOverview />} />
+        <Route path="/Overview/:productId" element={<ProductOverview />} />
         
 
       </Routes>
