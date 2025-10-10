@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/Footer";
+
 import axios from "axios";
+import ProductCard from "../components/productCard";
 
 export default function WomenPage() {
   const [products, setProducts] = useState([]);
@@ -12,15 +14,14 @@ export default function WomenPage() {
     try {
       setLoading(true);
       setError(null);
-      
-      // ✅ Fetch with gender=Women (backend returns Women + Unisex)
+
       const response = await axios.get(
         import.meta.env.VITE_BACKEND_URL + "/api/products",
         {
-          params: { gender: "Women" }
+          params: { gender: "Women" },
         }
       );
-      
+
       setProducts(response.data);
       setLoading(false);
     } catch (err) {
@@ -39,7 +40,7 @@ export default function WomenPage() {
       <Navbar />
       <div className="w-full bg-[#ECE9E2]">
         {/* Hero Section */}
-        <div className="relative w-full h-[300px] bg-gradient-to-r from-[#E8D5E0] to-[#D8C5D0] overflow-hidden">
+        <div className="relative h-[300px] bg-[url(./womenHero.png)] bg-cover bg-center bg-no-repeat overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 h-full flex items-center">
             <div className="max-w-xl">
               <h1 className="text-5xl font-bold text-[#2D3436] mb-4">
@@ -91,63 +92,10 @@ export default function WomenPage() {
             <>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {products.map((product) => (
-                  <div
+                  <ProductCard
                     key={product.productId || product._id}
-                    className="group cursor-pointer"
-                  >
-                    {/* Product Image */}
-                    <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-3 shadow-sm group-hover:shadow-xl transition-all">
-                      <img
-                        src={
-                          product.images?.[0] ||
-                          "https://via.placeholder.com/400x400?text=No+Image"
-                        }
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => {
-                          e.target.src =
-                            "https://via.placeholder.com/400x400?text=No+Image";
-                        }}
-                      />
-
-                      {/* Stock Badge */}
-                      {product.stock > 0 && product.stock < 10 && (
-                        <div className="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                          Only {product.stock} left
-                        </div>
-                      )}
-
-                      {product.stock === 0 && (
-                        <div className="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                          Out of Stock
-                        </div>
-                      )}
-
-                      
-                    </div>
-
-                    {/* Product Info */}
-                    <div>
-                      <h3 className="text-base font-semibold text-[#2D3436] mb-1">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-[#636E72] mb-2">
-                        {product.category}
-                      </p>
-
-                      {/* Price */}
-                      <div className="flex items-center gap-2">
-                        <p className="text-[#00B894] font-bold text-lg">
-                          Rs {Number(product.price).toLocaleString()}
-                        </p>
-                        {product.labelledPrice > product.price && (
-                          <p className="text-[#636E72] text-sm line-through">
-                            Rs {Number(product.labelledPrice).toLocaleString()}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                    product={product}
+                  />
                 ))}
               </div>
 
