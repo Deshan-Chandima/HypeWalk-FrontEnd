@@ -6,6 +6,7 @@ import AdminPage from './pages/adminPage.jsx';
 import { Toaster } from 'react-hot-toast';
 import MenPage from './pages/menPage.jsx';
 import WomenPage from './pages/womenPage.jsx';
+import ProductOverview from './pages/client/productOverView.jsx';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/admin/*" element={<AdminPage />} />
         <Route path="/men" element={<MenPage />} />
         <Route path="/women" element={<WomenPage />} />
+        <Route path="/Overview" element={<ProductOverview />} />
         
 
       </Routes>

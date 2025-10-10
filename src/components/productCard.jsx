@@ -1,8 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="group cursor-pointer">
+    <Link 
+      to={`/Overview`}
+      className="group cursor-pointer block"
+    >
       {/* Product Image */}
       <div className="relative aspect-square bg-white rounded-2xl overflow-hidden mb-3 shadow-sm group-hover:shadow-xl transition-all">
         <img
@@ -29,13 +33,11 @@ export default function ProductCard({ product }) {
             Out of Stock
           </div>
         )}
-
-        
       </div>
 
       {/* Product Info */}
       <div>
-        <h3 className="text-base font-semibold text-[#2D3436] mb-1">
+        <h3 className="text-base font-semibold text-[#2D3436] mb-1 group-hover:text-[#00B894] transition">
           {product.name}
         </h3>
         <p className="text-sm text-[#636E72] mb-2">{product.category}</p>
@@ -52,6 +54,6 @@ export default function ProductCard({ product }) {
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
