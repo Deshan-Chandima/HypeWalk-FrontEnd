@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import ProductOverview from './pages/client/productOverView.jsx';
 import MenPage from './pages/client/menPage.jsx';
 import WomenPage from './pages/client/womenPage.jsx';
+import CartPage from './pages/client/cart.jsx';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/men" element={<MenPage />} />
         <Route path="/women" element={<WomenPage/>} />
         <Route path="/Overview/:productId" element={<ProductOverview />} />
+        <Route path="/cart" element={<CartPage/>} />
         
 
       </Routes>
