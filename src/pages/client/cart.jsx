@@ -13,6 +13,7 @@ import {
   clearCartLocal 
 } from "../../utils/cart.js";
 
+
 export default function CartPage() {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -268,7 +269,7 @@ export default function CartPage() {
                   </div>
 
                   <button
-                    onClick={handleCheckout}
+                    onClick={() => navigate("/checkout", { state: { items: cartItems } })}
                     disabled={updating || cartItems.length === 0}
                     className="w-full bg-[#00B894] text-white py-3 rounded-xl font-semibold hover:bg-[#00A383] transition flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
