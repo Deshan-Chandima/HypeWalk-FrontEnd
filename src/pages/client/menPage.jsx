@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/navbar";
 
 import axios from "axios";
-import ProductCard from "../components/productCard";
+import ProductCard from "../../components/productCard";
 
-export default function WomenPage() {
+export default function MenPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ export default function WomenPage() {
       const response = await axios.get(
         import.meta.env.VITE_BACKEND_URL + "/api/products",
         {
-          params: { gender: "Women" },
+          params: { gender: "Men" },
         }
       );
 
@@ -40,15 +40,15 @@ export default function WomenPage() {
       <Navbar />
       <div className="w-full bg-[#ECE9E2]">
         {/* Hero Section */}
-        <div className="relative h-[300px] bg-[url(./womenHero.png)] bg-cover bg-center bg-no-repeat overflow-hidden">
+        <div className="relative h-[300px] bg-[url(./menHero.png)] bg-cover bg-center bg-no-repeat overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 h-full flex items-center">
             <div className="max-w-xl">
               <h1 className="text-5xl font-bold text-[#2D3436] mb-4">
-                Women's Collection
+                Men's Collection
               </h1>
               <p className="text-lg text-[#636E72] mb-6">
-                Step into comfort and style with our latest women's footwear
-                collection.
+                Discover the latest collection of men's footwear designed for
+                comfort and style.
               </p>
               <div className="flex gap-3">
                 <button className="bg-[#2D3436] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#00B894] transition-all">
@@ -82,7 +82,7 @@ export default function WomenPage() {
           ) : products.length === 0 ? (
             <div className="text-center py-20">
               <p className="text-[#636E72] text-lg mb-4">
-                No women's products available at the moment.
+                No men's products available at the moment.
               </p>
               <p className="text-[#B2BEC3] text-sm">
                 Check back later for new arrivals.

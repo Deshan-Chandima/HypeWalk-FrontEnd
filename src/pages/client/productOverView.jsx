@@ -1,6 +1,7 @@
 // src/pages/client/productOverview.jsx
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { 
   ShoppingCart, 
   Heart, 
@@ -13,6 +14,7 @@ import {
 import Navbar from "../../components/navbar";
 import Footer from "../../components/Footer";
 import axios from "axios";
+import { addToCart, getCart } from "../../utils/cart.js";
 
 // Helper functions
 function getPid(p) {
@@ -51,26 +53,30 @@ export default function ProductOverview() {
       })
       .catch((error) => {
         console.error(error);
+        toast.error("Failed to load product");
         setStatus("error");
       });
   }, [params.productId]);
 
   // --- handleAddToCart ---
   async function handleAddToCart() {
-    if (!product || !selectedSize) {
-      alert("Please select a size first!");
+    if (!product) return;
+    
+    if (!selectedSize) {
+      toast.error("Please select a size first!");
       return;
     }
+    
     try {
       setAdding(true);
-      // await addToCart(product, qty); // Add your cart logic
-      // await getCart();
-      alert(`Added ${qty} x ${product.name} (Size ${selectedSize}) to cart`);
+      await addToCart(product, qty, selectedSize);
+      toast.success(`Added ${qty} x ${product.name} (Size ${selectedSize}) to cart`);
+      await getCart();
     } catch (e) {
       if (e?.response?.status === 401 || e?.response?.status === 403) {
-        alert("Please login to save your cart");
+        toast.error("Please login to save your cart");
       } else {
-        alert("Failed to add to cart");
+        toast.error("Failed to add to cart");
       }
       console.error(e);
     } finally {
@@ -80,10 +86,13 @@ export default function ProductOverview() {
 
   // --- handleBuyNow ---
   function handleBuyNow() {
-    if (!product || !selectedSize) {
-      alert("Please select a size first!");
+    if (!product) return;
+    
+    if (!selectedSize) {
+      toast.error("Please select a size first!");
       return;
     }
+    
     const pid = getPid(product);
     navigate("/checkout", {
       state: {
@@ -134,14 +143,14 @@ export default function ProductOverview() {
     return !product.isAvailable || stockNum <= 0;
   }, [product]);
 
-  // Get available sizes from product (assuming product.sizes array exists)
+  // Get available sizes from product
   const availableSizes = useMemo(() => {
     if (!product) return [];
-    // If product has a sizes array, use it
+
     if (Array.isArray(product.sizes) && product.sizes.length > 0) {
       return product.sizes;
     }
-    // Otherwise return default sizes
+
     return [7, 8, 9, 10, 11, 12];
   }, [product]);
 
@@ -331,10 +340,10 @@ export default function ProductOverview() {
                 )}
               </div>
 
-              {/* Size Selection - Shows only available sizes from product */}
+              {/* Size Selection */}
               <div className="space-y-3">
                 <label className="text-[#2D3436] font-semibold text-lg">
-                  Select Size
+                  Select Size {!selectedSize && <span className="text-red-500">*</span>}
                 </label>
                 <div className="grid grid-cols-6 gap-3">
                   {availableSizes.map((size) => (
@@ -354,6 +363,9 @@ export default function ProductOverview() {
                     </button>
                   ))}
                 </div>
+                {!selectedSize && !soldOut && (
+                  <p className="text-sm text-orange-600">Please select a size</p>
+                )}
               </div>
 
               {/* Quantity selector */}
@@ -439,18 +451,7 @@ export default function ProductOverview() {
                 </button>
               </div>
 
-              {/* Small note when sold out or no size selected */}
-              {!selectedSize && !soldOut && (
-                <div className="text-sm text-orange-600 bg-orange-50 px-4 py-2 rounded-lg">
-                  Please select a size to continue
-                </div>
-              )}
 
-              {soldOut && (
-                <div className="text-sm text-[#636E72] bg-gray-100 px-4 py-2 rounded-lg">
-                  This item is currently unavailable. Please check back later.
-                </div>
-              )}
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4 pt-6 border-t-2 border-gray-100">
