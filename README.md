@@ -86,15 +86,7 @@ npm install react-router-dom axios react-hot-toast lucide-react jwt-decode
 
 text
 
-## 🔧 Environment Variables
 
-Create a `.env` file in the root directory and add:
-
-VITE_BACKEND_URL=http://localhost:5000
-
-text
-
-**Note:** Make sure your backend server is running on the specified URL.
 
 ## ▶️ Running the Application
 
