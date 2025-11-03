@@ -68,7 +68,7 @@ Before you begin, ensure you have the following installed:
 ## 🚀 Installation
 
 1. **Clone the repository**
-git clone https://github.com/yourusername/shoe-store-frontend.git
+git clone https://github.com/Deshan-Chandima/shoe-store-frontend.git
 cd shoe-store-fron
 
 text
