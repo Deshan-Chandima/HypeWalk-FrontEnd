@@ -215,9 +215,7 @@ Ensure your backend is running before starting the frontend.
 - [ ] Advanced search and filters
 - [ ] Dark mode support
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 Deshan Chandima
