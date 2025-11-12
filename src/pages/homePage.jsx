@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Shield, Award, Truck } from "lucide-react";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
+
+
 
 
 
