@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Navbar from "../../components/navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer.jsx";
 import axios from "axios";
 import ProductCard from "../../components/productCard";
 

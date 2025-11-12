@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Shield, Award, Users, TrendingUp, Heart, Zap, Target, Globe } from "lucide-react";
 import Navbar from "../components/navbar";
-import Footer from "../components/Footer";
+import Footer from "../components/footer.jsx";
 
 
 
