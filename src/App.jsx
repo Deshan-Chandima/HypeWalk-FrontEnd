@@ -10,6 +10,7 @@ import MenPage from './pages/client/menPage.jsx';
 import WomenPage from './pages/client/womenPage.jsx';
 import CartPage from './pages/client/cart.jsx';
 import CheckoutPage from './pages/client/checkoutPage.jsx';
+import RegisterPage from './pages/registerPage.jsx';
 
 export default function App() {
   return (
@@ -24,8 +25,10 @@ export default function App() {
         <Route path="/Overview/:productId" element={<ProductOverview />} />
         <Route path="/cart" element={<CartPage/>} />
         <Route path="/checkout" element={<CheckoutPage/>} />
+        <Route path="/registerPage" element={<RegisterPage/>} />
+
         
-        
+          
 
       </Routes>
     </BrowserRouter>
