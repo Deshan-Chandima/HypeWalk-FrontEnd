@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Trash2, Plus, Minus, ShoppingBag, MapPin, Phone, User, CreditCard } from "lucide-react";
 import axios from "axios";
 import Navbar from "../../components/navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer.jsx";
 import { clearCartLocal } from "../../utils/cart.js";
 
 export default function CheckoutPage() {

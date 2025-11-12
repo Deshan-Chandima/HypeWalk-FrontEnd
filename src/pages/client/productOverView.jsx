@@ -12,7 +12,7 @@ import {
   Shield,
 } from "lucide-react";
 import Navbar from "../../components/navbar";
-import Footer from "../../components/Footer";
+import Footer from "../../components/footer.jsx";
 import axios from "axios";
 import { addToCart, getCart } from "../../utils/cart.js";
 
