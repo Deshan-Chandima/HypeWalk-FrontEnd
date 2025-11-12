@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 
 
 
+
 // Simple TransparentNavbar Component
 function TransparentNavbar() {
   return (
