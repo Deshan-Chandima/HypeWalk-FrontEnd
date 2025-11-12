@@ -1,16 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Shield, Award, Truck } from "lucide-react";
+import Footer from "../components/Footer";
 
-// Simple Footer Component
-function Footer() {
-  return (
-    <footer className="bg-[#2D3436] text-white py-8 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <p>&copy; 2024 Shoe Store. All rights reserved.</p>
-      </div>
-    </footer>
-  );
-}
+
 
 // Simple TransparentNavbar Component
 function TransparentNavbar() {
@@ -336,7 +328,7 @@ export default function HomePage() {
 
 
       </div>
-      <Footer />
+      <Footer/>
 
       <style jsx>{`
         @keyframes fadeIn {
