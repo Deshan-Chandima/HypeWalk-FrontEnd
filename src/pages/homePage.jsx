@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Shield, Award, Truck } from "lucide-react";
 import Footer from "../components/footer.jsx";
+import TransparentNavbar from "../components/TransparentNavbar.jsx";
+import Navbar from "../components/navbar.jsx";
 
 
 
@@ -8,21 +10,7 @@ import Footer from "../components/footer.jsx";
 
 
 // Simple TransparentNavbar Component
-function TransparentNavbar() {
-  return (
-    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-white text-2xl font-bold">ShoeStore</div>
-        <div className="flex gap-6 text-white">
-          <a href="/men" className="hover:text-[#00B894] transition-colors">Men</a>
-          <a href="/women" className="hover:text-[#00B894] transition-colors">Women</a>
-          <a href="/products" className="hover:text-[#00B894] transition-colors">Products</a>
-          <a href="/about" className="hover:text-[#00B894] transition-colors">About</a>
-        </div>
-      </div>
-    </nav>
-  );
-}
+
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -101,7 +89,7 @@ export default function HomePage() {
 
   return (
     <>
-      <TransparentNavbar />
+      <TransparentNavbar/>
       <div className="w-full bg-[#ECE9E2]">
         {/* Hero Slider */}
         <div className="relative w-full h-[600px] overflow-hidden bg-[#2D3436]">

@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { ShoppingCart, User, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export default function TransparentNavbar() {
+export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -208,5 +208,4 @@ export default function TransparentNavbar() {
         )}
       </div>
     </nav>
-  );
-}
+  );}
