@@ -43,7 +43,8 @@ export default function RegisterPage() {
       };
       // Remove confirmPassword before sending to backend
       delete data.confirmPassword;
-      await axios.post(import.meta.env.VITE_BACKEND_URL + "/users", data);
+      await axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users", data);
+
       toast.success("Registration successful! Please login.");
       navigate("/login");
     } catch (err) {

@@ -6,7 +6,7 @@ export default function ClientWebPage() {
     <div className="w-full h-screen max-h-screen">
       <Header />
       <div className="w-full h-[calc(100%-100px)] bg-yellow-400">
-        <Routes path="/">
+        <Routes>
           <Route path="/" element={<h1 className="text-3xl text-center">Welcome to the Home Page</h1>} />
           <Route path="/products" element={<h1 className="text-3xl text-center">Products Page</h1>} />
           <Route path="/reviews" element={<h1 className="text-3xl text-center">Reviews Page</h1>} />
