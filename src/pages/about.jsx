@@ -94,7 +94,7 @@ export default function AboutPage() {
       <Navbar/>
       <div className="w-full bg-[#ECE9E2]">
         {/* Hero Section */}
-        <div className="relative h-[400px] bg-gradient-to-br from-[#2D3436] via-[#636E72] to-[#2D3436] overflow-hidden">
+        <div className="relative h-[300px] bg-[url(./about.png)] bg-cover bg-center bg-no-repeat overflow-hidden"> 
           {/* Animated background elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
             <div className="absolute top-20 left-20 w-40 h-40 bg-[#00B894] rounded-full animate-pulse"></div>
