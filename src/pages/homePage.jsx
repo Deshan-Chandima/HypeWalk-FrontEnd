@@ -160,13 +160,7 @@ export default function HomePage() {
         <div className="w-full bg-[#ECE9E2] py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 
-              id="collections-title"
-              data-animate
-              className={`text-3xl font-bold text-[#2D3436] text-center mb-12 transition-all duration-1000 ${
-                isVisible["collections-title"] 
-                  ? "opacity-100 translate-y-0" 
-                  : "opacity-0 translate-y-10"
-              }`}
+              className="text-3xl font-bold text-[#2D3436] text-center mb-12"
             >
               Featured Collections
             </h2>
